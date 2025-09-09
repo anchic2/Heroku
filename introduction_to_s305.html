@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S305 • Welcome to Computer Networks</title>
+  <meta name="description" content="A playful, polished intro page for S305: Computer Networks." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto"],
+          },
+          keyframes: {
+            floaty: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-10px)' } },
+            spinSlow: { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
+            glow: { '0%, 100%': { opacity: .4 }, '50%': { opacity: .9 } },
+          },
+          animation: {
+            floaty: 'floaty 6s ease-in-out infinite',
+            spinSlow: 'spinSlow 24s linear infinite',
+            glow: 'glow 6s ease-in-out infinite',
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(0,0,0,.12)',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .grid-bg { background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 32px 32px; }
+    .card:hover { transform: translateY(-2px); }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 font-display selection:bg-indigo-500/40">
+  <!-- Hero -->
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-indigo-500/30 blur-3xl animate-glow"></div>
+    <div class="absolute -bottom-24 -right-24 w-[28rem] h-[28rem] rounded-full bg-fuchsia-500/20 blur-3xl animate-glow"></div>
+
+    <nav class="relative z-10 mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🌐</span>
+        <span class="text-lg tracking-wide font-semibold">S305 • Computer Networks</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="modeBtn" class="rounded-xl border border-white/15 px-4 py-2 text-sm hover:bg-white/10 transition">Toggle theme</button>
+        <a href="#start" class="rounded-xl bg-gradient-to-r from-indigo-500 to-fuchsia-500 px-4 py-2 text-sm font-semibold shadow-soft hover:opacity-90 transition">Start here</a>
+      </div>
+    </nav>
+
+    <div class="relative z-10 mx-auto max-w-6xl px-6 pb-20 pt-8 md:pt-16">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div>
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+            Welcome to <span class="bg-gradient-to-r from-indigo-400 via-sky-400 to-fuchsia-400 bg-clip-text text-transparent">Networks</span>
+          </h1>
+          <p class="mt-4 text-slate-300 text-lg md:text-xl">
+            In S305 we explore how billions of devices coordinate to move bits across the planet—reliably, securely, and fast. This page kicks off the journey.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#learn" class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/10 transition">What you'll learn</a>
+            <a href="#layers" class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/10 transition">The Internet model</a>
+            <a href="#quiz" class="rounded-xl border border-white/15 px-4 py-2 hover:bg-white/10 transition">1‑minute quiz</a>
+          </div>
+        </div>
+        <div class="relative h-64 md:h-80">
+          <!-- Animated network motif -->
+          <div class="absolute inset-0 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-soft"></div>
+          <svg viewBox="0 0 600 300" class="absolute inset-0 w-full h-full">
+            <defs>
+              <radialGradient id="node" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#a78bfa"/>
+                <stop offset="100%" stop-color="#818cf8" stop-opacity="0.1"/>
+              </radialGradient>
+            </defs>
+            <g class="animate-spinSlow origin-center">
+              <circle cx="120" cy="80" r="10" fill="url(#node)" />
+              <circle cx="500" cy="70" r="10" fill="url(#node)" />
+              <circle cx="420" cy="240" r="10" fill="url(#node)" />
+              <circle cx="180" cy="220" r="10" fill="url(#node)" />
+              <circle cx="300" cy="150" r="12" fill="url(#node)" />
+              <line x1="120" y1="80" x2="300" y2="150" stroke="rgba(129,140,248,.6)" stroke-width="2" />
+              <line x1="500" y1="70" x2="300" y2="150" stroke="rgba(129,140,248,.4)" stroke-width="2" />
+              <line x1="420" y1="240" x2="300" y2="150" stroke="rgba(129,140,248,.3)" stroke-width="2" />
+              <line x1="180" y1="220" x2="300" y2="150" stroke="rgba(129,140,248,.3)" stroke-width="2" />
+            </g>
+          </svg>
+          <div class="absolute -top-4 -right-4 bg-emerald-400/20 text-emerald-200 text-xs px-3 py-1 rounded-full backdrop-blur border border-emerald-300/20 animate-floaty">packet switching</div>
+          <div class="absolute -bottom-4 -left-4 bg-sky-400/20 text-sky-200 text-xs px-3 py-1 rounded-full backdrop-blur border border-sky-300/20 animate-floaty" style="animation-delay: .8s">routing</div>
+          <div class="absolute top-1/2 -translate-y-1/2 -left-6 bg-fuchsia-400/20 text-fuchsia-200 text-xs px-3 py-1 rounded-full backdrop-blur border border-fuchsia-300/20 animate-floaty" style="animation-delay: 1.4s">TCP/UDP</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Quick start / agenda -->
+  <section id="start" class="relative py-14">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card rounded-2xl border border-white/10 bg-white/5 p-6 transition will-change-transform">
+          <h3 class="text-xl font-bold mb-2">Today</h3>
+          <ul class="space-y-2 text-slate-300">
+            <li>• Course tour & expectations</li>
+            <li>• Internet model at a glance</li>
+            <li>• Live demo: tracing a packet</li>
+          </ul>
+        </div>
+        <div class="card rounded-2xl border border-white/10 bg-white/5 p-6 transition">
+          <h3 class="text-xl font-bold mb-2">Bring</h3>
+          <ul class="space-y-2 text-slate-300">
+            <li>• Laptop (Wi‑Fi on)</li>
+            <li>• Curiosity & questions</li>
+            <li>• Optional: install Wireshark</li>
+          </ul>
+        </div>
+        <div class="card rounded-2xl border border-white/10 bg-white/5 p-6 transition">
+          <h3 class="text-xl font-bold mb-2">Outcomes</h3>
+          <ul class="space-y-2 text-slate-300">
+            <li>• Name the 5 layers</li>
+            <li>• Explain packet vs circuit switching</li>
+            <li>• Run <code>traceroute</code> / <code>ping</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you'll learn -->
+  <section id="learn" class="relative py-14">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold">What you'll learn</h2>
+      <p class="mt-2 text-slate-300 max-w-2xl">From physical signals to apps we love—how the layers play together and why design trade‑offs matter.</p>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="card rounded-2xl border border-white/10 bg-white/5 p-6 transition">
+          <h3 class="font-bold text-lg mb-2">1) Physical & Link</h3>
+          <p class="text-slate-300">Bits on wires & radio, Ethernet/Wi‑Fi, MAC addressing, error detection, switches.</p>
+        </div>
+        <div class="card rounded-2xl border border-white/10 bg-white/5 p-6 transition">
+          <h3 class="font-bold text-lg mb-2">2) Network</h3>
+          <p class="text-slate-300">IP addressing, subnets, routing algorithms, routers, NAT, IPv4 vs IPv6.</p>
+        </div>
+        <div class="card rounded-2xl border border-white/10 bg-white/5 p-6 transition">
+          <h3 class="font-bold text-lg mb-2">3) Transport</h3>
+          <p class="text-slate-300">TCP vs UDP, congestion control, flow control, reliability & multiplexing (ports).</p>
+        </div>
+        <div class="card rounded-2xl border border-white/10 bg-white/5 p-6 transition">
+          <h3 class="font-bold text-lg mb-2">4) Application</h3>
+          <p class="text-slate-300">HTTP/HTTPS, DNS, email, streaming, REST/GraphQL, latency & throughput tradeoffs.</p>
+        </div>
+        <div class="card rounded-2xl border border-white/10 bg-white/5 p-6 transition">
+          <h3 class="font-bold text-lg mb-2">Security</h3>
+          <p class="text-slate-300">TLS, certs & PKI, zero trust, common attacks (spoofing, MITM, DDoS) & defenses.</p>
+        </div>
+        <div class="card rounded-2xl border border-white/10 bg-white/5 p-6 transition">
+          <h3 class="font-bold text-lg mb-2">Performance</h3>
+          <p class="text-slate-300">Latency vs bandwidth, queuing, CDNs, caching, QUIC/HTTP/3, measuring with tools.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internet Model visual -->
+  <section id="layers" class="relative py-14">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold">The 5‑Layer Internet Model</h2>
+      <p class="mt-2 text-slate-300 max-w-2xl">A pragmatic view we’ll use throughout S305.</p>
+
+      <div class="mt-8 grid md:grid-cols-5 gap-3">
+        <div class="rounded-xl p-4 bg-indigo-500/10 border border-indigo-400/20">
+          <div class="text-sm uppercase tracking-wider text-indigo-200">5</div>
+          <div class="font-bold">Application</div>
+          <div class="text-slate-300 text-sm">HTTP, DNS, SMTP…</div>
+        </div>
+        <div class="rounded-xl p-4 bg-sky-500/10 border border-sky-400/20">
+          <div class="text-sm uppercase tracking-wider text-sky-200">4</div>
+          <div class="font-bold">Transport</div>
+          <div class="text-slate-300 text-sm">TCP, UDP, QUIC</div>
+        </div>
+        <div class="rounded-xl p-4 bg-cyan-500/10 border border-cyan-400/20">
+          <div class="text-sm uppercase tracking-wider text-cyan-200">3</div>
+          <div class="font-bold">Network</div>
+          <div class="text-slate-300 text-sm">IP, Routing</div>
+        </div>
+        <div class="rounded-xl p-4 bg-emerald-500/10 border border-emerald-400/20">
+          <div class="text-sm uppercase tracking-wider text-emerald-200">2</div>
+          <div class="font-bold">Data Link</div>
+          <div class="text-slate-300 text-sm">Ethernet, Wi‑Fi</div>
+        </div>
+        <div class="rounded-xl p-4 bg-teal-500/10 border border-teal-400/20">
+          <div class="text-sm uppercase tracking-wider text-teal-200">1</div>
+          <div class="font-bold">Physical</div>
+          <div class="text-slate-300 text-sm">Bits & signals</div>
+        </div>
+      </div>
+
+      <div class="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h3 class="font-bold mb-2">Analogy: The Postal Service</h3>
+        <p class="text-slate-300">Apps write letters, transport guarantees delivery options, the network finds routes, the link gets your envelope across local streets, and the physical layer is the asphalt & air.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live demos / activities -->
+  <section id="activities" class="relative py-14">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold">Try it live</h2>
+      <p class="mt-2 text-slate-300 max-w-2xl">Short in‑class demos to make abstract ideas click.</p>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <h3 class="font-bold text-lg">Trace a packet</h3>
+          <ol class="list-decimal ml-5 text-slate-300 space-y-1">
+            <li>Open Terminal/PowerShell</li>
+            <li>Run <code>traceroute example.com</code> or <code>tracert example.com</code></li>
+            <li>Count the hops & note their locations</li>
+          </ol>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
+          <h3 class="font-bold text-lg">Ports in action</h3>
+          <ol class="list-decimal ml-5 text-slate-300 space-y-1">
+            <li>Run <code>nc -vz example.com 80</code> (or use an online port checker)</li>
+            <li>Try <code>443</code> and compare</li>
+            <li>Discuss: why different ports?</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Micro Quiz -->
+  <section id="quiz" class="relative py-14">
+    <div class="mx-auto max-w-3xl px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold">One‑Minute Quiz</h2>
+      <p class="mt-2 text-slate-300">No grades—just a pulse check.</p>
+
+      <form id="quizForm" class="mt-6 space-y-6">
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <p class="font-semibold mb-2">1) Which layer decides <em>where</em> packets go?</p>
+          <label class="block"><input type="radio" name="q1" value="app" class="mr-2">Application</label>
+          <label class="block"><input type="radio" name="q1" value="net" class="mr-2">Network</label>
+          <label class="block"><input type="radio" name="q1" value="phy" class="mr-2">Physical</label>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <p class="font-semibold mb-2">2) A web browser talking to a server typically uses which transport protocol?</p>
+          <label class="block"><input type="radio" name="q2" value="tcp" class="mr-2">TCP</label>
+          <label class="block"><input type="radio" name="q2" value="udp" class="mr-2">UDP</label>
+          <label class="block"><input type="radio" name="q2" value="icmp" class="mr-2">ICMP</label>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <p class="font-semibold mb-2">3) The device that connects different networks together is a…</p>
+          <label class="block"><input type="radio" name="q3" value="switch" class="mr-2">Switch</label>
+          <label class="block"><input type="radio" name="q3" value="router" class="mr-2">Router</label>
+          <label class="block"><input type="radio" name="q3" value="repeater" class="mr-2">Repeater</label>
+        </div>
+        <button type="submit" class="rounded-xl bg-gradient-to-r from-indigo-500 to-fuchsia-500 px-5 py-2 font-semibold shadow-soft hover:opacity-90 transition">Check my answers</button>
+        <div id="quizResult" class="mt-4 text-lg font-semibold"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section id="resources" class="relative py-14">
+    <div class="mx-auto max-w-6xl px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold">Useful resources</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <a class="rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition" href="https://www.wireshark.org/" target="_blank" rel="noreferrer">
+          <div class="font-bold">Wireshark</div>
+          <div class="text-slate-300 text-sm">Inspect packets live.</div>
+        </a>
+        <a class="rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition" href="https://datatracker.ietf.org/" target="_blank" rel="noreferrer">
+          <div class="font-bold">IETF Datatracker</div>
+          <div class="text-slate-300 text-sm">RFCs & drafts that shape the Internet.</div>
+        </a>
+        <a class="rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition" href="https://nsrc.org/ocn/" target="_blank" rel="noreferrer">
+          <div class="font-bold">NSRC Labs</div>
+          <div class="text-slate-300 text-sm">Hands‑on networking labs & primers.</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative py-10 border-t border-white/10">
+    <div class="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-slate-400 text-sm">© <span id="year"></span> S305 • Computer Networks</p>
+      <div class="text-slate-400 text-sm">Instructor: <span class="font-semibold">Andy Chickedantz</span> • <a class="underline decoration-dotted hover:no-underline" href="mailto:andy@example.edu">andy@example.edu</a></div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple theme toggle (dark / light)
+    const btn = document.getElementById('modeBtn');
+    btn?.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light');
+      document.body.classList.toggle('bg-white');
+      document.body.classList.toggle('text-slate-900');
+    });
+
+    // Quiz logic
+    const answers = { q1: 'net', q2: 'tcp', q3: 'router' };
+    document.getElementById('quizForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = new FormData(e.target);
+      let score = 0; let total = 0; let missing = [];
+      for (const key of Object.keys(answers)) {
+        total++;
+        const val = form.get(key);
+        if (!val) missing.push(key);
+        if (val === answers[key]) score++;
+      }
+      const el = document.getElementById('quizResult');
+      if (missing.length) {
+        el.textContent = 'Answer all questions before checking.';
+        el.className = 'mt-4 text-lg font-semibold text-amber-300';
+        return;
+      }
+      const pct = Math.round((score/total)*100);
+      el.textContent = `You got ${score}/${total} (${pct}%).`;
+      el.className = 'mt-4 text-lg font-semibold ' + (pct === 100 ? 'text-emerald-300' : pct >= 67 ? 'text-sky-300' : 'text-rose-300');
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('opacity-100', 'translate-y-0');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card, section .rounded-2xl').forEach(el => {
+      el.classList.add('opacity-0', 'translate-y-2', 'transition', 'duration-700');
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
